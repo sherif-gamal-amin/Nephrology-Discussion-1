@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nephrology Discussion (1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            user-select: none; /* يمنع تحديد النص */
+            -webkit-user-select: none; /* لمتصفحات WebKit مثل Chrome وSafari */
+            -moz-user-select: none; /* لمتصفح Firefox */
+            -ms-user-select: none; /* لمتصفح Internet Explorer/Edge */
+        }
+        @media print { /* إخفاء الصفحة عند الطباعة */
+            body { 
+                display: none;
+            }
+        }
+
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        img {
+            pointer-events: none; /* يمنع سحب الصور */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Nephrology Discussion (1)</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>1- A 25-year-old woman presents with nausea and vomiting of 2 days duration. She is not on any medications and was previously well until now. Her physical examination is normal except for a postural drop in her blood pressure from 110/80 mm Hg supine to 90/80 mm Hg standing. Her serum electrolytes are sodium 130 mEq/L, potassium 3 mEq/L, chloride 90 mEq/L, bicarbonate 30 mEq/L, urea 50 mg/dL, and creatinine 0.8 mg/dL. Which of the following electrolytes is most likely to be filtered through the glomerulus but unaffected by tubular secretion?</p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="potassium"> potassium</label>
+                <label><input type="radio" name="q1" value="sodium"> sodium</label>
+                <label><input type="radio" name="q1" value="bicarbonate"> bicarbonate</label>
+                <label><input type="radio" name="q1" value="urea"> urea</label>
+                <label><input type="radio" name="q1" value="creatinine"> creatinine</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-2">
+            <p>2- A 78-year-old man is brought to the hospital Because of nausea and vomiting. On examination he appears dry, his abdomen is soft, and the JVP is not visible. His laboratory tests reveal hypernatremia and his calculated free water deficit is approximately 3 L. In what part of the normal kidney is most of the water reabsorbed from?</p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="collecting ducts"> collecting ducts</label>
+                <label><input type="radio" name="q2" value="proximal tubule"> proximal tubule</label>
+                <label><input type="radio" name="q2" value="distal tubule"> distal tubule</label>
+                <label><input type="radio" name="q2" value="ascending loop of Henle"> ascending loop of Henle</label>
+                <label><input type="radio" name="q2" value="descending loop of Henle"> descending loop of Henle</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-3">
+            <p>3- Oliguria is :</p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="< 50 mL urine/24 hrs"> < 50 mL urine/24 hrs</label>
+                <label><input type="radio" name="q3" value="< 100 mL urine/24 hrs"> < 100 mL urine/24 hrs</label>
+                <label><input type="radio" name="q3" value="< 200 mL urine/24 hrs"> < 200 mL urine/24 hrs</label>
+                <label><input type="radio" name="q3" value="< 400 mL urine/24 hrs"> < 400 mL urine/24 hrs</label>
+                <label><input type="radio" name="q3" value="< 600 mL urine/24 hrs"> < 600 mL urine/24 hrs</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-4">
+            <p>4- Complete anuria is found in:</p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Diffuse cortical necrosis"> Diffuse cortical necrosis</label>
+                <label><input type="radio" name="q4" value="Acute gastroenteritis"> Acute gastroenteritis</label>
+                <label><input type="radio" name="q4" value="Acute renal failure"> Acute renal failure</label>
+                <label><input type="radio" name="q4" value="Chronic glomerulonephritis"> Chronic glomerulonephritis</label>
+                <label><input type="radio" name="q4" value="Acute interstitial nephritis"> Acute interstitial nephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-5">
+            <p>5- Fatty cast is often diagnostic of:</p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q5" value="Acute glomerulonephritis"> Acute glomerulonephritis</label>
+                <label><input type="radio" name="q5" value="End-stage renal disease"> End-stage renal disease</label>
+                <label><input type="radio" name="q5" value="Papillary necrosis"> Papillary necrosis</label>
+                <label><input type="radio" name="q5" value="Hyperlipidemia"> Hyperlipidemia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-6">
+            <p>6- Which is not a recognized cause of microalbuminuria:</p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q6" value="Diabetes mellitus with early renal involvement"> Diabetes mellitus with early renal involvement</label>
+                <label><input type="radio" name="q6" value="Congestive cardiac failure"> Congestive cardiac failure</label>
+                <label><input type="radio" name="q6" value="Strenuous physical exercise"> Strenuous physical exercise</label>
+                <label><input type="radio" name="q6" value="Fever"> Fever</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-7">
+            <p>7- Which is not a criterion for diagnosis of nephrotic syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="Hypertension"> Hypertension</label>
+                <label><input type="radio" name="q7" value="Massive proteinuria"> Massive proteinuria</label>
+                <label><input type="radio" name="q7" value="Hyperlipidemia"> Hyperlipidemia</label>
+                <label><input type="radio" name="q7" value="Anasarca"> Anasarca</label>
+                <label><input type="radio" name="q7" value="Hypoalbuminemia"> Hypoalbuminemia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-8">
+            <p>8- Which metal is not responsible for development of nephrotic syndrome:</p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="Gold"> Gold</label>
+                <label><input type="radio" name="q8" value="Iron"> Iron</label>
+                <label><input type="radio" name="q8" value="Mercury"> Mercury</label>
+                <label><input type="radio" name="q8" value="Lead"> Lead</label>
+                <label><input type="radio" name="q8" value="Chromium"> Chromium</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-9">
+            <p>9- A 58-year-old African man presents with pitting oedema of his ankles. He suffers from recently diagnosed hypertension, but is otherwise healthy. Blood results show low albumin and a urine dipstick is positive for protein. The most appropriate initial treatment is:</p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="High protein diet"> High protein diet</label>
+                <label><input type="radio" name="q9" value="Diuretics"> Diuretics</label>
+                <label><input type="radio" name="q9" value="Prophylactic anticoagulation"> Prophylactic anticoagulation</label>
+                <label><input type="radio" name="q9" value="ACE inhibitor"> ACE inhibitor</label>
+                <label><input type="radio" name="q9" value="Bed rest"> Bed rest</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-10">
+            <p>10- A 45 year old female with nephrotic syndrome develops renal vein thrombosis. What changes in patients with nephrotic syndrome predispose to the development of venous thromboembolism?</p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="Reduced excretion of protein S"> Reduced excretion of protein S</label>
+                <label><input type="radio" name="q10" value="Loss of antithrombin Ill"> Loss of antithrombin Ill</label>
+                <label><input type="radio" name="q10" value="Reduced excretion of protein C"> Reduced excretion of protein C</label>
+                <label><input type="radio" name="q10" value="Loss of fibrinogen"> Loss of fibrinogen</label>
+                <label><input type="radio" name="q10" value="Reduced metabolism of vitamin K"> Reduced metabolism of vitamin K</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-11">
+            <p>11- An 18-year-old man presents with general malaise and lethargy for the last 2 weeks, he denies any weight loss and has maintained a good appetite. On examination, there are no abnormalities except for sacral oedema and a polyphonic wheeze. Urine dipstick is positive for protein only and blood pressure is 130/80. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="Nephritic syndrome"> Nephritic syndrome</label>
+                <label><input type="radio" name="q11" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q11" value="Goodpasture’s disease"> Goodpasture’s disease</label>
+                <label><input type="radio" name="q11" value="Thin-basement membrane nephropathy"> Thin-basement membrane nephropathy</label>
+                <label><input type="radio" name="q11" value="Minimal change glomerulonephritis"> Minimal change glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-12">
+            <p>12- A 14-year-old man presents with facial and ankle swelling. This has slowly been developing over the past week. During the review of systems he describes passing 'frothy' urine. A urine dipstick shows protein +++ What is the most likely cause of this presentation?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="Minimal change disease"> Minimal change disease</label>
+                <label><input type="radio" name="q12" value="IgA nephropathy"> IgA nephropathy</label>
+                <label><input type="radio" name="q12" value="Membranoproliferative glomerulonephritis"> Membranoproliferative glomerulonephritis</label>
+                <label><input type="radio" name="q12" value="Polycystic kidney disease"> Polycystic kidney disease</label>
+                <label><input type="radio" name="q12" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-13">
+            <p>13- A sample of tissue from a renal biopsy is viewed using an electron microscope. Podocyte fusion is seen. Which one of the following types of glomerulonephritis is most associated with this finding?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q13" value="IgA nephropathy"> IgA nephropathy</label>
+                <label><input type="radio" name="q13" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q13" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q13" value="Minimal change glomerulonephritis"> Minimal change glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-14">
+            <p>14- Which one of the following statements regarding minimal change glomerulonephritis is incorrect?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="Has a good prognosis"> Has a good prognosis</label>
+                <label><input type="radio" name="q14" value="The majority of cases are steroid responsive"> The majority of cases are steroid responsive</label>
+                <label><input type="radio" name="q14" value="Is a common cause of nephrotic syndrome"> Is a common cause of nephrotic syndrome</label>
+                <label><input type="radio" name="q14" value="Hypertension is found in approximately 25% of patients"> Hypertension is found in approximately 25% of patients</label>
+                <label><input type="radio" name="q14" value="Haematuria is rare"> Haematuria is rare</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-15">
+            <p>15- Recognized feature of minimal change glomerular disease is :</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="Hematuria"> Hematuria</label>
+                <label><input type="radio" name="q15" value="Hypertension"> Hypertension</label>
+                <label><input type="radio" name="q15" value="Absence of edema"> Absence of edema</label>
+                <label><input type="radio" name="q15" value="Response to corticosteroid"> Response to corticosteroid</label>
+                <label><input type="radio" name="q15" value="Decreased complement"> Decreased complement</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-16">
+            <p>16- A 24-year-old woman is diagnosed as having nephrotic syndrome after being investigated for proteinuria. A diagnosis of minimal change glomerulonephritis is made. What is the most appropriate initial treatment to reduce proteinuria?</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="Protein restriction in diet"> Protein restriction in diet</label>
+                <label><input type="radio" name="q16" value="No treatment shown to effective"> No treatment shown to effective</label>
+                <label><input type="radio" name="q16" value="Angiotensin-converting-enzyme inhibitor"> Angiotensin-converting-enzyme inhibitor</label>
+                <label><input type="radio" name="q16" value="Diuretic"> Diuretic</label>
+                <label><input type="radio" name="q16" value="Prednisolone"> Prednisolone</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-17">
+            <p>17- What is the most likely outcome following the diagnosis of minimal change nephropathy in a 10-year-old male?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="Chronic kidney disease requiring renal replacement therapy within 30 years"> Chronic kidney disease requiring renal replacement therapy within 30 years</label>
+                <label><input type="radio" name="q17" value="Full recovery and no further episodes"> Full recovery and no further episodes</label>
+                <label><input type="radio" name="q17" value="Full recovery but with later relapses"> Full recovery but with later relapses</label>
+                <label><input type="radio" name="q17" value="Chronic kidney disease not requiring renal replacement therapy"> Chronic kidney disease not requiring renal replacement therapy</label>
+                <label><input type="radio" name="q17" value="Chronic kidney disease requiring renal replacement therapy within 10 years"> Chronic kidney disease requiring renal replacement therapy within 10 years</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-18">
+            <p>18- A 34-year-old man who has injected heroin for the past 10 years is admitted to the Emergency Department. You notice on the computer that his serum creatinine has been slowly rising over recent years. His latest results show the following:
+                Na 140 mmol/l
+                K 4.8 mmol/l
+                Bicarbonate 26 mmol/l
+                Urea 8.1 mmol/l
+                Creatinine 156 µmol/l
+                Urine dipstick Protein ++, nil else 
+                What is the most likely cause of his deteriorating renal function?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q18" value="Amyloidosis"> Amyloidosis</label>
+                <label><input type="radio" name="q18" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q18" value="Chronic pyelonephritis"> Chronic pyelonephritis</label>
+                <label><input type="radio" name="q18" value="Renal vein thrombosis"> Renal vein thrombosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-19">
+            <p>19- A 29-year-old man with HIV, on a highly active antiretroviral therapy (HAART) regimen including the protease inhibitor indinavir, presents with severe edema and a serum creatinine of 2.0 mg/dL. He has had bone pain for 5 years and takes large amounts of acetaminophen with codeine, aspirin, and ibuprofen. He is on prophylactic trimethoprim sulfamethoxazole. Blood pressure is 170/110; urinalysis shows 4+ protein, 5 to 10 RBC, 0 WBC; 24-hour urine protein is 6.2 g. The serum albumin is 1.9 g/dL(normal above 3.7). Which of the following is the most likely cause of his renal disease?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Indinavir toxicity"> Indinavir toxicity</label>
+                <label><input type="radio" name="q19" value="Analgesic nephropathy"> Analgesic nephropathy</label>
+                <label><input type="radio" name="q19" value="Trimethoprim-sulfamethoxazole–induced interstitial nephritis"> Trimethoprim-sulfamethoxazole–induced interstitial nephritis</label>
+                <label><input type="radio" name="q19" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q19" value="Renal artery stenosis"> Renal artery stenosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-20">
+            <p>20- Which one of the following is least associated with focal segmental glomerulosclerosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="Alport's syndrome"> Alport's syndrome</label>
+                <label><input type="radio" name="q20" value="Heroin"> Heroin</label>
+                <label><input type="radio" name="q20" value="Sickle-cell anaemia"> Sickle-cell anaemia</label>
+                <label><input type="radio" name="q20" value="Bleomycin"> Bleomycin</label>
+                <label><input type="radio" name="q20" value="HIV infection"> HIV infection</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-21">
+            <p>21- A 65-year-old man who is known to have colorectal cancer is referred to the renal clinic. His GP performed a protein-creatinine ratio as he had been complaining of 'frothy' urine. The results suggest nephrotic range proteinuria which is confirmed on a 24-hour urinary collection. Assuming the proteinuria is related to his colorectal cancer what is the renal histology most likely to show?</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q21" value="Minimal change glomerulonephritis"> Minimal change glomerulonephritis</label>
+                <label><input type="radio" name="q21" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q21" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q21" value="Membranoproliferative glomerulonephritis"> Membranoproliferative glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-22">
+            <p>22- A 43-year-old is referred to the renal clinic after presenting with peripheral oedema. He has no past medical history of note. Routine bloods ordered by his GP showed the following:
+                Hb 14.1 g/dl
+                Platelets 199 *109/l
+                WBC 5.6 * 109/l
+                Na 141 mmol/l
+                K 4.8 mmol/l
+                Urea 8.3 mmol/l
+                Creatinine 143 umol/l
+                Bilirubin 21 umol/l
+                ALP 84 u/l
+                ALT 22 u/l
+                yGT 33 u/l
+                Albumin 26 g/l
+                His urinary protein is 4.2g/24 hours. On examination in the clinic he has pitting oedema of the ankles and his blood pressure is 160/92 mmHg. A renal biopsy is ordered and reported as follows:
+                Light microscopy
+                Mesangium: normal, with no hypercellularity. The capillary walls are thickened. Subepithelial deposits are seen.
+                Given the likely diagnosis, which one of the following drugs is most likely to be beneficial?</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="ACE inhibitor"> ACE inhibitor</label>
+                <label><input type="radio" name="q22" value="Ciclosporin"> Ciclosporin</label>
+                <label><input type="radio" name="q22" value="Corticosteroid"> Corticosteroid</label>
+                <label><input type="radio" name="q22" value="Aspirin"> Aspirin</label>
+                <label><input type="radio" name="q22" value="Cyclophosphamide"> Cyclophosphamide</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-23">
+            <p>23- Which one of the following is least recognised as a cause of membranous glomerulonephritis?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="Malaria"> Malaria</label>
+                <label><input type="radio" name="q23" value="Lymphoma"> Lymphoma</label>
+                <label><input type="radio" name="q23" value="Hepatitis B"> Hepatitis B</label>
+                <label><input type="radio" name="q23" value="Cryoglobulinaemia"> Cryoglobulinaemia</label>
+                <label><input type="radio" name="q23" value="Gold"> Gold</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-24">
+            <p>24- A 25 year-old man has a renal biopsy due to worsening renal function. This reveals linear lgG deposits along the basement membrane. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Systemic lupus erythematous"> Systemic lupus erythematous</label>
+                <label><input type="radio" name="q24" value="lgA nephropathy"> lgA nephropathy</label>
+                <label><input type="radio" name="q24" value="Minimal change disease"> Minimal change disease</label>
+                <label><input type="radio" name="q24" value="Post-streptococcal glomerulonephritis"> Post-streptococcal glomerulonephritis</label>
+                <label><input type="radio" name="q24" value="Goodpasture's syndrome"> Goodpasture's syndrome</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-25">
+            <p>25- A 27-year-old man is investigated for haemoptysis. He is a non-smoker and has no respiratory history of note. Whilst awaiting a bronchoscopy he becomes lethargic and anorexic. Blood tests show the following:
+                Na+ 141 mmol/l
+                K+ 5.3 mmol/l
+                urea 16.7 mmol/l
+                Creatinine 271 µmol/l
+                A renal biopsy is performed and shows linear lgG deposits along the basement membrane.
+                What type of antibodies are most likely to cause this type of presentation?</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="cANCA"> cANCA</label>
+                <label><input type="radio" name="q25" value="lgA"> lgA</label>
+                <label><input type="radio" name="q25" value="pANCA"> pANCA</label>
+                <label><input type="radio" name="q25" value="Anti-nuclear antibodies (ANA)"> Anti-nuclear antibodies (ANA)</label>
+                <label><input type="radio" name="q25" value="Anti-glomerular basement membrane (anti-GBM) antibodies"> Anti-glomerular basement membrane (anti-GBM) antibodies</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-26">
+            <p>26- A 27-year-old man is diagnosed with Goodpasture syndrome. Which one of the following does not increase the likelihood of a pulmonary haemorrhage?</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="Smoking"> Smoking</label>
+                <label><input type="radio" name="q26" value="Inhalation of hydrocarbons"> Inhalation of hydrocarbons</label>
+                <label><input type="radio" name="q26" value="Male gender"> Male gender</label>
+                <label><input type="radio" name="q26" value="Dehydration"> Dehydration</label>
+                <label><input type="radio" name="q26" value="Lower respiratory tract infection"> Lower respiratory tract infection</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-27">
+            <p>27- Which one of the following types of glomerulonephritis is most characteristically associated with Goodpasture's syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="Diffuse proliferative glomerulonephritis"> Diffuse proliferative glomerulonephritis</label>
+                <label><input type="radio" name="q27" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q27" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q27" value="Rapidly progressive glomerulonephritis"> Rapidly progressive glomerulonephritis</label>
+                <label><input type="radio" name="q27" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-28">
+            <p>28- Which one of the following causes of glomerulonephritis is associated with normal complement levels?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="Post-streptococcal glomerulonephritis"> Post-streptococcal glomerulonephritis</label>
+                <label><input type="radio" name="q28" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q28" value="Subacute bacterial endocarditis"> Subacute bacterial endocarditis</label>
+                <label><input type="radio" name="q28" value="Goodpasture's syndrome"> Goodpasture's syndrome</label>
+                <label><input type="radio" name="q28" value="Systemic lupus erythematous"> Systemic lupus erythematous</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-29">
+            <p>29- A 28-year-old woman presents with a recent episode of coughing up some blood, frequent nosebleeds, and now decreased urine output. A nasal mucosa ulcer was seen on inspection. Her urinalysis is positive for protein and red cells consistent with a GN. The CXR shows two cavitary lesions and her serology is positive for antineutrophil cytoplasmic antibodies (ANCA). Which of the following is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="Wegener’s granulomatosis"> Wegener’s granulomatosis</label>
+                <label><input type="radio" name="q29" value="Bacterial endocarditis"> Bacterial endocarditis</label>
+                <label><input type="radio" name="q29" value="Goodpasture’s syndrome"> Goodpasture’s syndrome</label>
+                <label><input type="radio" name="q29" value="Lupus erythematosus"> Lupus erythematosus</label>
+                <label><input type="radio" name="q29" value="Poststreptococcal disease"> Poststreptococcal disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-30">
+            <p>30- Which one of the following types of glomerulonephritis is most characteristically associated with Wegener's granulomatosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q30" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q30" value="Rapidly progressive glomerulonephritis"> Rapidly progressive glomerulonephritis</label>
+                <label><input type="radio" name="q30" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q30" value="Diffuse proliferative glomerulonephritis"> Diffuse proliferative glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-31">
+            <p>31- A 44-year-old man is referred to the renal team. He has a long history of chronic sinusitis and was investigated last year for haemoptysis but no cause was found. A number of recent urine dipstick tests has shown persistent microscopic haematuria.
+                Na+ 140 mmol/l
+                K+ 4.8 mmol/l
+                Urea 11.4 mmol/l
+                Creatinine 145 pmol/l
+                ESR 61mm/hr
+                CRP 30 mg/I
+                anti-GBM Negative
+                cANCA Positive
+                pANCA Negative
+                ANA Negative
+                Given the likely diagnosis, what findings would be expected on renal biopsy?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="Segmental tuft necrosis"> Segmental tuft necrosis</label>
+                <label><input type="radio" name="q31" value="Kimmelstiel-Wilson nodules"> Kimmelstiel-Wilson nodules</label>
+                <label><input type="radio" name="q31" value="Crescentic glomerulonephritis"> Crescentic glomerulonephritis</label>
+                <label><input type="radio" name="q31" value="'Pull-house' immunoglobulin deposition"> 'Pull-house' immunoglobulin deposition</label>
+                <label><input type="radio" name="q31" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-32">
+            <p>32- A 21-year-old man presents with painless haematuria which he has noticed in the last 3 days. He suffers from type 1 diabetes which is well controlled, but is otherwise fit and healthy. The patient has recently recovered from a mild throat infection. Urine dipstick analysis reveals blood and protein in the urine. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="Henoch–Schonlein purpura"> Henoch–Schonlein purpura</label>
+                <label><input type="radio" name="q32" value="Benign prostate hypertrophy"> Benign prostate hypertrophy</label>
+                <label><input type="radio" name="q32" value="IgA nephropathy"> IgA nephropathy</label>
+                <label><input type="radio" name="q32" value="Diabetic nephropathy"> Diabetic nephropathy</label>
+                <label><input type="radio" name="q32" value="Urinary tract infection (UTI)"> Urinary tract infection (UTI)</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-33">
+            <p>33- A 25 years old man is referred to you because of hematuria. Reddening of the urine occurs at time of recent respiratory infection. Urine analysis shows 2+ protein and 15 RBCs with some dysmorphic erythrocytes. No WBCs or casts are seen. What is the most likely cause of his hematuria?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="Kidney stone"> Kidney stone</label>
+                <label><input type="radio" name="q33" value="Renal cell carcinoma"> Renal cell carcinoma</label>
+                <label><input type="radio" name="q33" value="Acute poststreptococcal glomerulonephritis"> Acute poststreptococcal glomerulonephritis</label>
+                <label><input type="radio" name="q33" value="Chronic prostatitis"> Chronic prostatitis</label>
+                <label><input type="radio" name="q33" value="Berger disease"> Berger disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-34">
+            <p>34- A 17-year-old man is referred to the local nephrology unit for investigation. He reports having several episodes of visible haematuria. There is no history of abdominal or loin pain. These typically seem to occur within a day or two of developing an upper respiratory tract infection. Urine dipstick is normal.
+                Blood tests show the following:
+                Na• 141 mmol/l
+                K+ 4.3 mmol/l
+                Bicarbonate 25 mmol/l
+                Urea 4.1 mmol/l
+                Creatinine 72 µmol/l
+                What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="Chlamydia"> Chlamydia</label>
+                <label><input type="radio" name="q34" value="Bladder cancer"> Bladder cancer</label>
+                <label><input type="radio" name="q34" value="lgA nephropathy"> lgA nephropathy</label>
+                <label><input type="radio" name="q34" value="Rhinovirus-associated nephropathy"> Rhinovirus-associated nephropathy</label>
+                <label><input type="radio" name="q34" value="Post-streptococcal glomerulonephritis"> Post-streptococcal glomerulonephritis</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-35">
+            <p>35- A 33-year-old man with a history of coeliac disease is admitted for investigation of recurrent macroscopic haematuria. His urine is typically brown and there is no history of passing clots. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="Diffuse proliferative glomerulonephritis"> Diffuse proliferative glomerulonephritis</label>
+                <label><input type="radio" name="q35" value="IgA nephropathy"> IgA nephropathy</label>
+                <label><input type="radio" name="q35" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q35" value="Minimal change disease"> Minimal change disease</label>
+                <label><input type="radio" name="q35" value="Rapidly progressive glomerulonephritis"> Rapidly progressive glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-36">
+            <p>36- A 10-year-old boy is taken to see the GP by his mother. For the past two days he has had a sore throat associated with blood in his urine. There is no significant past medical history. The GP suspects glomerulonephritis and refers the patient to hospital. What would a renal biopsy most likely show?</p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="Proliferation of endothelial cells"> Proliferation of endothelial cells</label>
+                <label><input type="radio" name="q36" value="No change"> No change</label>
+                <label><input type="radio" name="q36" value="Mesangial hypercellularity"> Mesangial hypercellularity</label>
+                <label><input type="radio" name="q36" value="Basement membrane thickening"> Basement membrane thickening</label>
+                <label><input type="radio" name="q36" value="Capillary wall necrosis"> Capillary wall necrosis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-37">
+            <p>37- A 19-year-old woman is referred to the nephrology department after experiencing several episodes of visible haematuria. There is no history of abdominal or loin pain. These typically seem to occur within a day or two of developing tonsillitis. Blood pressure is 148/90 mmHg. Urine dipstick is normal. Blood tests show the following:
+                Na• 142 mmol/l
+                K+ 4.1 mmol/l
+                Bicarbonate 24 mmol/l
+                Urea 3.5 mmol/l
+                Creatinine 71 µmol/l
+                Given the likely diagnosis, which one of the following is a marker of poor prognosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="Female gender"> Female gender</label>
+                <label><input type="radio" name="q37" value="Hypertension"> Hypertension</label>
+                <label><input type="radio" name="q37" value="Frank haematuria"> Frank haematuria</label>
+                <label><input type="radio" name="q37" value="Absence of proteinuria"> Absence of proteinuria</label>
+                <label><input type="radio" name="q37" value="Development of the disease before the age of 20 years"> Development of the disease before the age of 20 years</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-38">
+            <p>38- Which one of the following is associated with a better prognosis in patients with IgA nephropathy?</p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Heavy proteinuria at presentation"> Heavy proteinuria at presentation</label>
+                <label><input type="radio" name="q38" value="Male gender"> Male gender</label>
+                <label><input type="radio" name="q38" value="Hyperlipidaemia"> Hyperlipidaemia</label>
+                <label><input type="radio" name="q38" value="Frank haematuria"> Frank haematuria</label>
+                <label><input type="radio" name="q38" value="ACE genotype DD"> ACE genotype DD</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-39">
+            <p>39- Patient come with hematuria and proteinuria 2 weeks after sore throat .. What is diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="Nephrotic syndrome"> Nephrotic syndrome</label>
+                <label><input type="radio" name="q39" value="Nephritic syndrome"> Nephritic syndrome</label>
+                <label><input type="radio" name="q39" value="Poststreptococcal glomerulonephritis"> Poststreptococcal glomerulonephritis</label>
+                <label><input type="radio" name="q39" value="IgA nephropathy"> IgA nephropathy</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-40">
+            <p>40- A 6-year-old has a sore throat and has been given antibiotics. Three weeks later, he represents feeling feverish with nausea, vomiting and tea-coloured urine. Urine dipstick confirms haematuria and protein. Blood pressure is 100/60 mmHg. The most likely diagnosis is:</p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="Nephritic syndrome"> Nephritic syndrome</label>
+                <label><input type="radio" name="q40" value="UTI"> UTI</label>
+                <label><input type="radio" name="q40" value="Acute tubulointerstitial nephritis"> Acute tubulointerstitial nephritis</label>
+                <label><input type="radio" name="q40" value="Minimal change glomerulonephritis"> Minimal change glomerulonephritis</label>
+                <label><input type="radio" name="q40" value="Post streptococcal glomerulonephritis"> Post streptococcal glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-41">
+            <p>41- A 21-year-old man is diagnosed with poststreptococcal glomerulonephritis. Which of the following is likely to be found in his urine?</p>
+            <div class="options">
+                <label><input type="radio" name="q41" value=">3 g/24 hr proteinuria without hematuria"> >3 g/24 hr proteinuria without hematuria</label>
+                <label><input type="radio" name="q41" value="Macroscopic hematuria and 24-hour urinary albumin of 227 mg"> Macroscopic hematuria and 24-hour urinary albumin of 227 mg</label>
+                <label><input type="radio" name="q41" value="Microscopic hematuria with leukocytes and 24-hour urinary albumin of 227 mg"> Microscopic hematuria with leukocytes and 24-hour urinary albumin of 227 mg</label>
+                <label><input type="radio" name="q41" value="Positive urine culture for Streptococcus"> Positive urine culture for Streptococcus</label>
+                <label><input type="radio" name="q41" value="Sterile pyuria without proteinuria"> Sterile pyuria without proteinuria</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-42">
+            <p>42- Which one of the following types of glomerulonephritis is most characteristically associated with streptococcal infection in children?</p>
+            <div class="options">
+                <label><input type="radio" name="q42" value="Focal segmental glomerulosclerosis"> Focal segmental glomerulosclerosis</label>
+                <label><input type="radio" name="q42" value="Diffuse proliferative glomerulonephritis"> Diffuse proliferative glomerulonephritis</label>
+                <label><input type="radio" name="q42" value="Membranous glomerulonephritis"> Membranous glomerulonephritis</label>
+                <label><input type="radio" name="q42" value="Mesangiocapillary glomerulonephritis"> Mesangiocapillary glomerulonephritis</label>
+                <label><input type="radio" name="q42" value="Rapidly progressive glomerulonephritis"> Rapidly progressive glomerulonephritis</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-43">
+            <p>43- A 24-year-old woman presents with nausea, vomiting, anorexia, and gross hematuria. She had a sore throat 2 weeks ago that resolved on its own. On examination, her blood pressure is 160/90 mm Hg, pulse 90/min, JVP is 7 cm, heart sounds are normal, there is 1+ pedal edema, and the lungs are clear. She has a renal biopsy. Which of the following electron microscopy findings on the renal biopsy is most likely in keeping with poststreptococcal GN?</p>
+            <div class="options">
+                <label><input type="radio" name="q43" value="Diffuse mesangial deposits"> Diffuse mesangial deposits</label>
+                <label><input type="radio" name="q43" value="No deposits"> No deposits</label>
+                <label><input type="radio" name="q43" value="Electron-dense endothelial deposits"> Electron-dense endothelial deposits</label>
+                <label><input type="radio" name="q43" value="Closed capillary lumen"> Closed capillary lumen</label>
+                <label><input type="radio" name="q43" value="Subepithelial humps"> Subepithelial humps</label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة حدث للكيبورد لمنع حفظ الصفحة
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("تم منع حفظ الصفحة!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع فتح أدوات المطور
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault();
+                alert("تم تعطيل أدوات المطور!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع النقر بزر اليمين
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // يمنع فتح قائمة السياق
+            alert("النقر بزر الماوس الأيمن غير مسموح به.");
+        });
+
+        let currentQuestion = 1;
+        const totalQuestions = 43;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "urea",
+            q2: "proximal tubule",
+            q3: "< 400 mL urine/24 hrs",
+            q4: "Diffuse cortical necrosis",
+            q5: "Nephrotic syndrome",
+            q6: "Nephrotic syndrome",
+            q7: "Hypertension",
+            q8: "Iron",
+            q9: "Diuretics",
+            q10: "Loss of antithrombin Ill",
+            q11: "Minimal change glomerulonephritis",
+            q12: "Minimal change disease",
+            q13: "Minimal change glomerulonephritis",
+            q14: "Hypertension is found in approximately 25% of patients",
+            q15: "Response to corticosteroid",
+            q16: "Prednisolone",
+            q17: "Full recovery but with later relapses",
+            q18: "Focal segmental glomerulosclerosis",
+            q19: "Focal segmental glomerulosclerosis",
+            q20: "Bleomycin",
+            q21: "Membranous glomerulonephritis",
+            q22: "ACE inhibitor",
+            q23: "Cryoglobulinaemia",
+            q24: "Goodpasture's syndrome",
+            q25: "Anti-glomerular basement membrane (anti-GBM) antibodies",
+            q26: "Dehydration",
+            q27: "Rapidly progressive glomerulonephritis",
+            q28: "Goodpasture's syndrome",
+            q29: "Wegener’s granulomatosis",
+            q30: "Rapidly progressive glomerulonephritis",
+            q31: "Crescentic glomerulonephritis",
+            q32: "IgA nephropathy",
+            q33: "berger disease",
+            q34: "IgA nephropathy",
+            q35: "IgA nephropathy",
+            q36: "Mesangial hypercellularity",
+            q37: "Hypertension",
+            q38: "Frank haematuria",
+            q39: "Poststreptococcal glomerulonephritis",
+            q40: "Post streptococcal glomerulonephritis",
+            q41: "Microscopic hematuria with leukocytes and 24-hour urinary albumin of 227mg",
+            q42: "Diffuse proliferative glomerulonephritis",
+            q43: "subepithelial humps"
+        };
+
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q .style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            clearInterval(timerInterval);
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            let timeRemaining = 60;
+            document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    if (currentQuestion < totalQuestions) {
+                        nextQuestion();
+                    } else {
+                        evaluateQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+
+            clearInterval(timerInterval);
+        }
+
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+        
+        
+        function nextQuestion() {
+    // Increase the current question counter
+            currentQuestion++;
+
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+
+            // Show the next question
+            showQuestion();
+        }
+        
+    </script>
+</body>
+</html>
